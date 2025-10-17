@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>収支記録フォーム</title>
+    <style>
+        body { font-family: sans-serif; margin: 16px; background: #f4f4f4; }
+        div { margin-bottom: 12px; }
+        label { display: block; margin-bottom: 4px; font-weight: bold; }
+        input[type="text"], input[type="date"], input[type="number"], select, textarea {
+            width: 95%; padding: 10px; border-radius: 5px; border: 1px solid #ccc; font-size: 16px;
+        }
+        button {
+            width: 100%; padding: 12px; background: #00B900; color: white;
+            font-size: 18px; border: none; border-radius: 5px; cursor: pointer;
+        }
+        button:disabled { background: #ccc; }
+        #message { margin-top: 16px; text-align: center; }
+        #store_other_div { display: none; }
+    </style>
+</head>
+<body>
+
+    <h3>収支記録フォーム</h3>
+    
+    <form id="recordForm">
+        <div>
+            <label for="date">日付:</label>
+            <input type="date" id="date" required>
+        </div>
+        
+        <div>
+            <label for="store_select">店名:</label>
+            <select id="store_select" required>
+                <option value="">選択してください</option>
+                <option value="キコーナ御影店">キコーナ御影店</option>
+                <option value="キコーナ青木店">キコーナ青木店</option>
+                <option value="123摩耶(スロ)">123摩耶(スロ)</option>
+                <option value="キコーナ三宮">キコーナ三宮</option>
+                <option value="タイヨー六甲道店">タイヨー六甲道店</option>
+                <option value="ディーノ青木店">ディーノ青木店</option>
+                <option value="ディーノ六甲道店">ディーノ六甲道店</option>
+                <option value="アミューズ三宮店">アミューズ三宮店</option>
+                <option value="ミクちゃんガイア三ノ宮店（47枚貸）">ミクちゃんガイア三ノ宮店（47枚貸）</option>
+                <option value="ミクちゃんガイア三宮（46枚貸）">ミクちゃんガイア三宮（46枚貸）</option>
+                <option value="123大阪本店">123大阪本店</option>
+                <option value="123南昭和店">123南昭和店</option>
+                <option value="ミリオン川内店">ミリオン川内店</option>
+                <option value="キコーナ青木（パチ）">キコーナ青木（パチ）</option>
+                <option value="ミリオン島田店">ミリオン島田店</option>
+                <option value="ミリオン中吉野店">ミリオン中吉野店</option>
+                <option value="ピールーツマンドレ">ピールーツマンドレ</option>
+                <option value="プレミオ岩屋店(10スロ)">プレミオ岩屋店(10スロ)</option>
+                <option value="123神戸スロット">123神戸スロット</option>
+                <option value="123田宮">123田宮</option>
+                <option value="キコーナ青木(5ｽﾛ)">キコーナ青木(5ｽﾛ)</option>
+                <option value="123松茂">123松茂</option>
+                <option value="ミリオン国府店">ミリオン国府店</option>
+                <option value="123摩耶(パチ)">123摩耶(パチ)</option>
+                <option value="みくちゃんガイア住吉">みくちゃんガイア住吉</option>
+                <option value="キコーナ神戸中央スロット館">キコーナ神戸中央スロット館</option>
+                <option value="その他">その他（以下に入力）</option>
+            </select>
+        </div>
+        <div id="store_other_div">
+            <label for="store_other">店名（その他）:</label>
+            <input type="text" id="store_other" placeholder="店名を手入力">
+        </div>
+
+        <div>
+            <label for="machine">機種概要:</label>
+            <input type="text" id="machine" placeholder="例: 喰種（トーキョーグール）" required>
+        </div>
+
+        <div>
+            <label for="player">実践者:</label>
+            <select id="player" required>
+                <option value="">選択してください</option>
+                <option value="雄志">雄志</option>
+                <option value="和也">和也</option>
+                <option value="雄志、和也">雄志、和я</option>
+                <option value="雄志 (6:4)">雄志 (6:4)</option>
+                <option value="和也 (6:4)">和也 (6:4)</option>
+                <option value="雄志 (7:3)">雄志 (7:3)</option>
+                <option value="和也 (7:3)">和也 (7:3)</option>
+                <option value="雄志 (8:2)">雄志 (8:2)</option>
+                <option value="和也 (8:2)">和也 (8:2)</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="medal_start">メダル始まり (枚):</label>
+            <input type="number" id="medal_start" placeholder="例: 0">
+        </div>
+        <div>
+            <label for="medal_end">メダル終わり (枚):</label>
+            <input type="number" id="medal_end" placeholder="例: 800">
+        </div>
+        <div>
+            <label for="cash_result">現金収支 (円):</label>
+            <input type="number" id="cash_result" placeholder="例: -10000 (負けはマイナスで)">
+        </div>
+
+        <div>
+            <label for="expenses">雑費 (食事・交通費など):</label>
+            <input type="number" id="expenses" placeholder="例: 1500">
+        </div>
+
+        <div>
+            <label for="memo">支払い結果・その他備考:</label>
+            <textarea id="memo" rows="3" placeholder="特になし"></textarea>
+        </div>
+        
+        <button type="submit" id="submitButton">記録を送信</button>
+    </form>
+    
+    <div id="message"></div>
+
+    <script>
+        // --- 1. 設定項目 ---
+        // LIFF_ID は不要
+        
+        // (GASから取得したWebアプリURLを設定)
+        const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwvJZpCf8ptEObWj9oK11hp-jfNqd6m990rictt_5t_ExOda0lAPYBV9XXWH95vXRUJ/exec"; // ★要設定★
+        // ---------------------
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // liff.init は不要
+            
+            // 今日の日付をフォームのデフォルト値に設定
+            document.getElementById('date').value = new Date().toISOString().split('T')[0];
+
+            // 「店名」で「その他」が選ばれたら入力欄を表示
+            document.getElementById('store_select').addEventListener('change', function() {
+                const otherDiv = document.getElementById('store_other_div');
+                const otherInput = document.getElementById('store_other');
+                if (this.value === 'その他') {
+                    otherDiv.style.display = 'block';
+                    otherInput.required = true;
+                } else {
+                    otherDiv.style.display = 'none';
+                    otherInput.required = false;
+                    otherInput.value = "";
+                }
+            });
+
+            document.getElementById('recordForm').addEventListener('submit', handleSubmit);
+        });
+
+        async function handleSubmit(event) {
+            event.preventDefault(); 
+            const submitButton = document.getElementById('submitButton');
+            const messageDiv = document.getElementById('message');
+            const form = document.getElementById('recordForm'); // フォーム自体を取得
+
+            submitButton.disabled = true;
+            messageDiv.innerText = "送信中...";
+
+            const storeSelect = document.getElementById('store_select');
+            let storeValue = storeSelect.value;
+            if (storeValue === 'その他') {
+                storeValue = document.getElementById('store_other').value;
+            }
+
+            const formData = {
+                date: document.getElementById('date').value,
+                store: storeValue,
+                machine: document.getElementById('machine').value,
+                player: document.getElementById('player').value,
+                medal_start: parseInt(document.getElementById('medal_start').value, 10) || 0,
+                medal_end: parseInt(document.getElementById('medal_end').value, 10) || 0,
+                cash_result: parseInt(document.getElementById('cash_result').value, 10) || 0,
+                expenses: parseInt(document.getElementById('expenses').value, 10) || 0,
+                memo: document.getElementById('memo').value || "特になし"
+            };
+
+            try {
+                // GASのWebhookにデータをPOST送信
+                const response = await fetch(GAS_WEB_APP_URL, { // ← 変数名を N8N_WEBHOOK_URL から変更
+                    method: 'POST',
+                    // mode: 'no-cors', // GASにPOSTする場合は 'no-cors' は不要（もしCORSエラーが出たら追記）
+                    cache: 'no-cache',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                    redirect: 'follow'
+                });
+
+                // GASからの応答をJSONとして解析（GAS側がJSONを返す設定になっているため）
+                const result = await response.json(); 
+
+                if (result.status === 'success') {
+                    messageDiv.innerText = "記録しました！";
+                    form.reset(); // フォームをリセット
+                    // 今日の日付を再設定
+                    document.getElementById('date').value = new Date().toISOString().split('T')[0];
+                    // 2秒後にメッセージを消す
+                    setTimeout(() => {
+                        messageDiv.innerText = "";
+                    }, 2000);
+                } else {
+                    throw new Error(result.message || `Server responded with status: ${response.status}`);
+                }
+
+            } catch (error) {
+                console.error("Fetch error:", error);
+                messageDiv.innerText = `送信に失敗しました: ${error.message}`;
+            } finally {
+                // 成功しても失敗してもボタンを再度有効化
+                submitButton.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
